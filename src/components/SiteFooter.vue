@@ -1,18 +1,20 @@
 <script setup>
-import { profile } from '../data/site'
+import { siteContent } from '../data/site'
 </script>
 
 <template>
   <footer class="site-footer">
     <div>
-      <strong>{{ profile.handle }}</strong>
-      <p>Independent AI software company building practical intelligent systems.</p>
+      <strong>{{ siteContent.profile.handle }}</strong>
+      <p>{{ siteContent.footer.text }}</p>
     </div>
 
     <div class="footer-links">
-      <a :href="`mailto:${profile.email}`">Email</a>
-      <a :href="profile.github" target="_blank" rel="noreferrer">GitHub</a>
-      <RouterLink to="/blog">Blog</RouterLink>
+      <a :href="`mailto:${siteContent.profile.email}`">{{ siteContent.common.email }}</a>
+      <a :href="siteContent.profile.github" target="_blank" rel="noreferrer">
+        {{ siteContent.common.github }}
+      </a>
+      <RouterLink to="/blog">{{ siteContent.common.blog }}</RouterLink>
     </div>
   </footer>
 </template>

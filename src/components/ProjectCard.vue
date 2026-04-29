@@ -1,5 +1,6 @@
 <script setup>
 import GlassCard from './GlassCard.vue'
+import { siteContent } from '../data/site'
 
 defineProps({
   project: {
@@ -24,9 +25,11 @@ defineProps({
     </div>
 
     <div class="card-actions">
-      <RouterLink class="glass-button compact primary" :to="project.demo">View Details</RouterLink>
+      <RouterLink class="glass-button compact primary" :to="project.demo">
+        {{ siteContent.common.viewDetails }}
+      </RouterLink>
       <a class="glass-button compact ghost" :href="project.github" target="_blank" rel="noreferrer">
-        GitHub
+        {{ siteContent.common.github }}
       </a>
     </div>
   </GlassCard>

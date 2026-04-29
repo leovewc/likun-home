@@ -1,5 +1,6 @@
 <script setup>
 import GlassCard from './GlassCard.vue'
+import { siteContent } from '../data/site'
 
 defineProps({
   release: {
@@ -21,11 +22,11 @@ defineProps({
 
     <dl class="release-meta">
       <div>
-        <dt>Version</dt>
+        <dt>{{ siteContent.common.version }}</dt>
         <dd>{{ release.version }}</dd>
       </div>
       <div>
-        <dt>Platform</dt>
+        <dt>{{ siteContent.common.platform }}</dt>
         <dd>{{ release.platform }}</dd>
       </div>
     </dl>
@@ -33,11 +34,15 @@ defineProps({
     <p>{{ release.description }}</p>
 
     <div class="card-actions">
-      <a class="glass-button compact primary" :href="release.download">Download</a>
-      <a class="glass-button compact ghost" :href="release.github" target="_blank" rel="noreferrer">
-        GitHub
+      <a class="glass-button compact primary" :href="release.download">
+        {{ siteContent.common.download }}
       </a>
-      <RouterLink class="glass-button compact" :to="release.details">Details</RouterLink>
+      <a class="glass-button compact ghost" :href="release.github" target="_blank" rel="noreferrer">
+        {{ siteContent.common.github }}
+      </a>
+      <RouterLink class="glass-button compact" :to="release.details">
+        {{ siteContent.common.details }}
+      </RouterLink>
     </div>
   </GlassCard>
 </template>

@@ -1,43 +1,23 @@
 <script setup>
 import GlassCard from '../components/GlassCard.vue'
-
-const posts = [
-  {
-    title: 'Designing AI features that feel practical',
-    summary: 'Notes on moving from impressive demos to useful software workflows.',
-    tag: 'AI Product',
-  },
-  {
-    title: 'Shipping desktop software with a web stack',
-    summary: 'A short field note on Vue, Vite, Electron, and release packaging.',
-    tag: 'Engineering',
-  },
-  {
-    title: 'Cloud deployment as a product skill',
-    summary: 'Why deployment, monitoring, and data flow matter for independent builders.',
-    tag: 'Cloud',
-  },
-]
+import { siteContent } from '../data/site'
 </script>
 
 <template>
   <div class="page">
     <section class="page-hero">
-      <p class="eyebrow">Blog</p>
-      <h1>Field notes from building AI software products.</h1>
-      <p>
-        A future home for concise engineering notes, release writeups, and practical lessons from
-        building intelligent applications.
-      </p>
+      <p class="eyebrow">{{ siteContent.blogPage.eyebrow }}</p>
+      <h1>{{ siteContent.blogPage.title }}</h1>
+      <p>{{ siteContent.blogPage.text }}</p>
     </section>
 
     <section class="section-block first-section">
       <div class="blog-grid">
-        <GlassCard v-for="post in posts" :key="post.title" as="article" tone="blog">
+        <GlassCard v-for="post in siteContent.blogPage.posts" :key="post.title" as="article" tone="blog">
           <p class="eyebrow">{{ post.tag }}</p>
           <h2>{{ post.title }}</h2>
           <p>{{ post.summary }}</p>
-          <RouterLink class="text-link" to="/blog">Coming Soon</RouterLink>
+          <RouterLink class="text-link" to="/blog">{{ siteContent.common.comingSoon }}</RouterLink>
         </GlassCard>
       </div>
     </section>

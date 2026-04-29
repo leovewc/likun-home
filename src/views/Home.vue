@@ -1,12 +1,13 @@
 <script setup>
+import { computed } from 'vue'
 import GlassCard from '../components/GlassCard.vue'
 import HeroSection from '../components/HeroSection.vue'
 import ProjectCard from '../components/ProjectCard.vue'
 import ReleaseCard from '../components/ReleaseCard.vue'
-import { profile, projects, releases, skillGroups } from '../data/site'
+import { siteContent } from '../data/site'
 
-const featuredProjects = projects.slice(0, 4)
-const releasePreview = releases.slice(0, 3)
+const featuredProjects = computed(() => siteContent.value.projects.slice(0, 4))
+const releasePreview = computed(() => siteContent.value.releases.slice(0, 3))
 </script>
 
 <template>
@@ -16,10 +17,10 @@ const releasePreview = releases.slice(0, 3)
     <section class="section-block">
       <div class="section-heading split">
         <div>
-          <p class="eyebrow">Featured Projects</p>
-          <h2>Product and engineering work across AI, cloud, desktop, and immersive systems.</h2>
+          <p class="eyebrow">{{ siteContent.home.featuredEyebrow }}</p>
+          <h2>{{ siteContent.home.featuredTitle }}</h2>
         </div>
-        <RouterLink class="text-link" to="/projects">All Projects</RouterLink>
+        <RouterLink class="text-link" to="/projects">{{ siteContent.home.allProjects }}</RouterLink>
       </div>
 
       <div class="project-grid">
@@ -29,12 +30,12 @@ const releasePreview = releases.slice(0, 3)
 
     <section class="section-block">
       <div class="section-heading">
-        <p class="eyebrow">Skills / Tech Stack</p>
-        <h2>The operating stack behind LINKUN software systems.</h2>
+        <p class="eyebrow">{{ siteContent.home.skillsEyebrow }}</p>
+        <h2>{{ siteContent.home.skillsTitle }}</h2>
       </div>
 
       <div class="skill-grid">
-        <GlassCard v-for="group in skillGroups" :key="group.title" as="article" tone="skill">
+        <GlassCard v-for="group in siteContent.skillGroups" :key="group.title" as="article" tone="skill">
           <h3>{{ group.title }}</h3>
           <div class="tag-cloud">
             <span v-for="item in group.items" :key="item">{{ item }}</span>
@@ -46,10 +47,12 @@ const releasePreview = releases.slice(0, 3)
     <section class="section-block">
       <div class="section-heading split">
         <div>
-          <p class="eyebrow">Publish / Releases</p>
-          <h2>Recent product builds, demos, and company resources.</h2>
+          <p class="eyebrow">{{ siteContent.home.releasesEyebrow }}</p>
+          <h2>{{ siteContent.home.releasesTitle }}</h2>
         </div>
-        <RouterLink class="text-link" to="/publish">Open Download Center</RouterLink>
+        <RouterLink class="text-link" to="/publish">
+          {{ siteContent.home.downloadCenter }}
+        </RouterLink>
       </div>
 
       <div class="release-preview-grid">
@@ -60,18 +63,21 @@ const releasePreview = releases.slice(0, 3)
     <section class="contact-section">
       <GlassCard tone="contact" class="contact-panel">
         <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Building an AI workflow, internal platform, or operational product?</h2>
-          <p>
-            LINKUN works on intelligent systems, full-stack product builds, cloud deployment,
-            and release-ready software for focused teams.
-          </p>
+          <p class="eyebrow">{{ siteContent.home.contactEyebrow }}</p>
+          <h2>{{ siteContent.home.contactTitle }}</h2>
+          <p>{{ siteContent.home.contactText }}</p>
         </div>
 
         <div class="contact-links">
-          <a class="glass-button primary" :href="`mailto:${profile.email}`">{{ profile.email }}</a>
-          <a class="glass-button" :href="profile.github" target="_blank" rel="noreferrer">GitHub</a>
-          <RouterLink class="glass-button ghost" to="/blog">Blog</RouterLink>
+          <a class="glass-button primary" :href="`mailto:${siteContent.profile.email}`">
+            {{ siteContent.profile.email }}
+          </a>
+          <a class="glass-button" :href="siteContent.profile.github" target="_blank" rel="noreferrer">
+            {{ siteContent.common.github }}
+          </a>
+          <RouterLink class="glass-button ghost" to="/blog">
+            {{ siteContent.common.blog }}
+          </RouterLink>
         </div>
       </GlassCard>
     </section>

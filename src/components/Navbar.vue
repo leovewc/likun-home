@@ -1,13 +1,5 @@
 <script setup>
-import { profile } from '../data/site'
-
-const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Publish', to: '/publish' },
-  { label: 'Blog', to: '/blog' },
-  { label: 'About', to: '/about' },
-]
+import { siteContent, toggleLanguage } from '../data/site'
 </script>
 
 <template>
@@ -15,19 +7,29 @@ const navItems = [
     <RouterLink class="brand-lockup" to="/" aria-label="LINKUN Home">
       <span class="brand-glyph">L</span>
       <span class="brand-copy">
-        <strong>{{ profile.handle }}</strong>
-        <small>{{ profile.shortTitle }}</small>
+        <strong>{{ siteContent.profile.handle }}</strong>
+        <small>{{ siteContent.profile.shortTitle }}</small>
       </span>
     </RouterLink>
 
     <nav class="nav-glass" aria-label="Primary navigation">
-      <RouterLink v-for="item in navItems" :key="item.to" class="nav-link" :to="item.to">
+      <RouterLink v-for="item in siteContent.nav" :key="item.to" class="nav-link" :to="item.to">
         {{ item.label }}
       </RouterLink>
     </nav>
 
-    <a class="nav-github glass-button compact" :href="profile.github" target="_blank" rel="noreferrer">
-      GitHub
-    </a>
+    <div class="nav-actions">
+      <button class="language-toggle" type="button" @click="toggleLanguage">
+        {{ siteContent.nextLanguageLabel }}
+      </button>
+      <a
+        class="nav-github glass-button compact"
+        :href="siteContent.profile.github"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {{ siteContent.common.github }}
+      </a>
+    </div>
   </header>
 </template>

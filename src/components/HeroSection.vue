@@ -1,25 +1,31 @@
 <script setup>
-import { heroMetrics, profile } from '../data/site'
+import { siteContent } from '../data/site'
 </script>
 
 <template>
   <section class="hero-section">
     <div class="hero-content">
-      <p class="eyebrow">LINKUN / AI Software Company</p>
-      <h1>{{ profile.headline }}</h1>
-      <p class="hero-lede">{{ profile.subheadline }}</p>
+      <p class="eyebrow">{{ siteContent.hero.eyebrow }}</p>
+      <h1>{{ siteContent.profile.headline }}</h1>
+      <p class="hero-lede">{{ siteContent.profile.subheadline }}</p>
 
       <div class="hero-actions">
-        <RouterLink class="glass-button primary" to="/projects">View Projects</RouterLink>
-        <RouterLink class="glass-button" to="/publish">Product Releases</RouterLink>
-        <a class="glass-button" :href="profile.resume">Company Profile</a>
-        <a class="glass-button ghost" :href="profile.github" target="_blank" rel="noreferrer">
-          GitHub
+        <RouterLink class="glass-button primary" to="/projects">
+          {{ siteContent.hero.actions.projects }}
+        </RouterLink>
+        <RouterLink class="glass-button" to="/publish">
+          {{ siteContent.hero.actions.releases }}
+        </RouterLink>
+        <a class="glass-button" :href="siteContent.profile.resume">
+          {{ siteContent.hero.actions.profile }}
+        </a>
+        <a class="glass-button ghost" :href="siteContent.profile.github" target="_blank" rel="noreferrer">
+          {{ siteContent.common.github }}
         </a>
       </div>
 
       <div class="hero-metrics">
-        <article v-for="metric in heroMetrics" :key="metric.value" class="metric-glass">
+        <article v-for="metric in siteContent.heroMetrics" :key="metric.value" class="metric-glass">
           <strong>{{ metric.value }}</strong>
           <span>{{ metric.label }}</span>
         </article>
@@ -44,15 +50,15 @@ import { heroMetrics, profile } from '../data/site'
       </div>
 
       <div class="signal-panel panel-top">
-        <p>Adaptive Layer</p>
-        <strong>AI Systems</strong>
-        <span>Vision, automation, inference, internal tools.</span>
+        <p>{{ siteContent.hero.panels.topEyebrow }}</p>
+        <strong>{{ siteContent.hero.panels.topTitle }}</strong>
+        <span>{{ siteContent.hero.panels.topText }}</span>
       </div>
 
       <div class="signal-panel panel-bottom">
-        <p>Product Surface</p>
-        <strong>Web / Cloud / Desktop</strong>
-        <span>Interfaces and release workflows for real operations.</span>
+        <p>{{ siteContent.hero.panels.bottomEyebrow }}</p>
+        <strong>{{ siteContent.hero.panels.bottomTitle }}</strong>
+        <span>{{ siteContent.hero.panels.bottomText }}</span>
       </div>
     </div>
   </section>
