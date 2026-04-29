@@ -1,4 +1,5 @@
 <script setup>
+import AnimatedSection from '../components/AnimatedSection.vue'
 import ReleaseCard from '../components/ReleaseCard.vue'
 import GlassCard from '../components/GlassCard.vue'
 import { siteContent } from '../data/site'
@@ -6,13 +7,23 @@ import { siteContent } from '../data/site'
 
 <template>
   <div class="page">
-    <section class="page-hero publish-hero">
+    <section
+      v-motion
+      class="page-hero publish-hero"
+      :initial="{ opacity: 0, y: 24, filter: 'blur(10px)' }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        transition: { duration: 680, delay: 80 },
+      }"
+    >
       <p class="eyebrow">{{ siteContent.publishPage.eyebrow }}</p>
       <h1>{{ siteContent.publishPage.title }}</h1>
       <p>{{ siteContent.publishPage.text }}</p>
     </section>
 
-    <section class="release-layout">
+    <AnimatedSection class="release-layout">
       <GlassCard tone="feature" class="download-feature">
         <p class="eyebrow">{{ siteContent.publishPage.latestEyebrow }}</p>
         <h2>{{ siteContent.publishPage.latestTitle }}</h2>
@@ -28,8 +39,13 @@ import { siteContent } from '../data/site'
       </GlassCard>
 
       <div class="release-list">
-        <ReleaseCard v-for="release in siteContent.releases" :key="release.title" :release="release" />
+        <ReleaseCard
+          v-for="(release, index) in siteContent.releases"
+          :key="release.title"
+          :release="release"
+          :index="index"
+        />
       </div>
-    </section>
+    </AnimatedSection>
   </div>
 </template>

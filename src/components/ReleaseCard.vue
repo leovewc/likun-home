@@ -7,11 +7,28 @@ defineProps({
     type: Object,
     required: true,
   },
+  index: {
+    type: Number,
+    default: 0,
+  },
 })
 </script>
 
 <template>
-  <GlassCard as="article" tone="release" class="release-card">
+  <GlassCard
+    v-motion
+    as="article"
+    tone="release"
+    class="release-card"
+    :initial="{ opacity: 0, y: 32, scale: 0.985, filter: 'blur(10px)' }"
+    :visible-once="{
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: { duration: 640, delay: index * 90 },
+    }"
+  >
     <div class="release-heading">
       <div>
         <p class="release-type">{{ release.type }}</p>

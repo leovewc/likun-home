@@ -7,11 +7,28 @@ defineProps({
     type: Object,
     required: true,
   },
+  index: {
+    type: Number,
+    default: 0,
+  },
 })
 </script>
 
 <template>
-  <GlassCard as="article" tone="project" class="project-card">
+  <GlassCard
+    v-motion
+    as="article"
+    tone="project"
+    class="project-card"
+    :initial="{ opacity: 0, y: 34, scale: 0.98, filter: 'blur(10px)' }"
+    :visible-once="{
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: { duration: 640, delay: index * 80 },
+    }"
+  >
     <div class="card-topline">
       <span>{{ project.category }}</span>
       <em>{{ project.status }}</em>

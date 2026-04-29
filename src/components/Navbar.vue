@@ -1,9 +1,25 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue'
 import { siteContent, toggleLanguage } from '../data/site'
+
+const isScrolled = ref(false)
+
+const updateScrollState = () => {
+  isScrolled.value = window.scrollY > 16
+}
+
+onMounted(() => {
+  updateScrollState()
+  window.addEventListener('scroll', updateScrollState, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateScrollState)
+})
 </script>
 
 <template>
-  <header class="navbar-wrap">
+  <header class="navbar-wrap" :class="{ 'is-scrolled': isScrolled }">
     <RouterLink class="brand-lockup" to="/" aria-label="LINKUN Home">
       <span class="brand-glyph">L</span>
       <span class="brand-copy">

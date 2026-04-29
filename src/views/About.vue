@@ -1,17 +1,28 @@
 <script setup>
+import AnimatedSection from '../components/AnimatedSection.vue'
 import GlassCard from '../components/GlassCard.vue'
 import { siteContent } from '../data/site'
 </script>
 
 <template>
   <div class="page">
-    <section class="page-hero">
+    <section
+      v-motion
+      class="page-hero"
+      :initial="{ opacity: 0, y: 24, filter: 'blur(10px)' }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        transition: { duration: 680, delay: 80 },
+      }"
+    >
       <p class="eyebrow">{{ siteContent.aboutPage.eyebrow }}</p>
       <h1>{{ siteContent.aboutPage.title }}</h1>
       <p>{{ siteContent.aboutPage.text }}</p>
     </section>
 
-    <section class="about-grid section-block first-section">
+    <AnimatedSection class="about-grid section-block first-section">
       <GlassCard as="article" tone="about">
         <p class="eyebrow">{{ siteContent.aboutPage.cards[0].eyebrow }}</p>
         <h2>{{ siteContent.aboutPage.cards[0].title }}</h2>
@@ -46,6 +57,6 @@ import { siteContent } from '../data/site'
           </a>
         </p>
       </GlassCard>
-    </section>
+    </AnimatedSection>
   </div>
 </template>
