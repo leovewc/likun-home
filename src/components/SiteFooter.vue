@@ -14,7 +14,9 @@ import { siteContent } from '../data/site'
       <a :href="siteContent.profile.github" target="_blank" rel="noreferrer">
         {{ siteContent.common.github }}
       </a>
-      <RouterLink to="/blog">{{ siteContent.common.blog }}</RouterLink>
+      <a :href="siteContent.profile.blog" target="_blank" rel="noreferrer">
+        {{ siteContent.common.blog }}
+      </a>
     </div>
   </footer>
 </template>

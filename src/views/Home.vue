@@ -139,9 +139,9 @@ const releasePreview = computed(() => siteContent.value.releases.slice(0, 3))
           <a class="glass-button" :href="siteContent.profile.github" target="_blank" rel="noreferrer">
             {{ siteContent.common.github }}
           </a>
-          <RouterLink class="glass-button ghost" to="/blog">
+          <a class="glass-button ghost" :href="siteContent.profile.blog" target="_blank" rel="noreferrer">
             {{ siteContent.common.blog }}
-          </RouterLink>
+          </a>
         </div>
       </GlassCard>
     </AnimatedSection>

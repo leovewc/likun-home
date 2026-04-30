@@ -29,9 +29,20 @@ onUnmounted(() => {
     </RouterLink>
 
     <nav class="nav-glass" aria-label="Primary navigation">
-      <RouterLink v-for="item in siteContent.nav" :key="item.to" class="nav-link" :to="item.to">
-        {{ item.label }}
-      </RouterLink>
+      <template v-for="item in siteContent.nav" :key="item.href || item.to">
+        <a
+          v-if="item.href"
+          class="nav-link"
+          :href="item.href"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {{ item.label }}
+        </a>
+        <RouterLink v-else class="nav-link" :to="item.to">
+          {{ item.label }}
+        </RouterLink>
+      </template>
     </nav>
 
     <div class="nav-actions">
